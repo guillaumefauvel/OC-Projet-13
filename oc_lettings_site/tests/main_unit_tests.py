@@ -18,6 +18,7 @@ class AdressTestCase(TestCase):
 
 
 class UrlTester(TestCase):
+    """ Check the response status code and if the title contains the expected string """
     
     def setUp(self):
         user = User.objects.create(username="Josh", first_name="Josh", last_name="Lobio")
@@ -40,16 +41,16 @@ class UrlTester(TestCase):
         assert "<title>Profiles</title>" in str(response.content)
         
     def test_profile_object(self):
-        # TODO : To modify
-        response = self.c.get('/profiles/Josh')
-        assert response.status_code == 301
+        response = self.c.get('/profiles/Josh/')
+        assert "<title>Josh</title>" in str(response.content)
+        assert response.status_code == 200
         
     def test_letting_index(self):
         response = self.c.get('/lettings/')
         assert response.status_code == 200
         assert "<title>Lettings</title>" in str(response.content)
 
-    def test_letting_index(self):
-        # TODO : To modify
-        response = self.c.get('/lettings/1')
-        assert response.status_code == 301
+    def test_letting_object(self):
+        response = self.c.get('/lettings/1/')
+        assert "<title>London Paradise</title>" in str(response.content)
+        assert response.status_code == 200
