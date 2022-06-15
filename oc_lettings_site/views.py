@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from lettings.models import Letting
-from profiles.models import Profile
 
 
 # Lorem ipsum dolor sit amet, consectetur adipiscing elit.

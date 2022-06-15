@@ -1,21 +1,28 @@
+import os
+
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import unittest
+from django.urls import reverse, reverse_lazy
+
 
 
 class FunctionnalTests(unittest.TestCase):
-    
+
     @classmethod
     def setUpClass(cls):
+        #os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
+        print('\n\n- Start of functionnal tests -\n')
         options = webdriver.ChromeOptions()
-        options.headless = False
+        options.headless = True
         cls.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
 
     def main_page(self):
-        self.driver.get('http://127.0.0.1:8000')
+        self.driver.get(reverse('index'))
+        
         
     def test_profile_object(self):
         self.main_page()
@@ -63,7 +70,7 @@ class FunctionnalTests(unittest.TestCase):
     def tearDownClass(cls):
         cls.driver.close()
         cls.driver.quit()
-        print('\n\n- End of functionnal tests -')
+        print('\n\n\n- End of functionnal tests -\n')
 
 
 if __name__ == '__main__':

@@ -9,7 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('', include(lettings_urls)),
-    path('', include(profiles_urls)),
-] 
+    path('', include(profiles_urls))
+]
+
 
 

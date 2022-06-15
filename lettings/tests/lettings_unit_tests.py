@@ -5,7 +5,7 @@ from lettings.models import Letting
 
 
 class LettingsTestCase(TestCase):
-    
+
     def setUp(self):
         address = Address.objects.create(number=1, street="Saint Georges Avenue", city="London",
                                state="London", zip_code="5208", country_iso_code="GBR")

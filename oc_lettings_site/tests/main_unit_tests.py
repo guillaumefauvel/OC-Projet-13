@@ -1,10 +1,12 @@
 from django.test import TestCase
 from django.test import Client
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 from oc_lettings_site.models import Address
 from profiles.models import Profile
 from lettings.models import Letting
+
 
 class AdressTestCase(TestCase):
     
@@ -19,7 +21,7 @@ class AdressTestCase(TestCase):
 
 class UrlTester(TestCase):
     """ Check the response status code and if the title contains the expected string """
-    
+
     def setUp(self):
         user = User.objects.create(username="Josh", first_name="Josh", last_name="Lobio")
         Profile.objects.create(user=user, favorite_city="Paris")
@@ -29,22 +31,22 @@ class UrlTester(TestCase):
         letting = Letting.objects.create(title="London Paradise", address=address)
         
         self.c = Client()
-        
+
     def test_index(self):
         response = self.c.get('/')
         assert response.status_code == 200
         assert "<title>Holiday Homes</title>" in str(response.content)
-        
+
     def test_profile_index(self):
         response = self.c.get('/profiles/')
         assert response.status_code == 200
         assert "<title>Profiles</title>" in str(response.content)
-        
+
     def test_profile_object(self):
         response = self.c.get('/profiles/Josh/')
         assert "<title>Josh</title>" in str(response.content)
         assert response.status_code == 200
-        
+
     def test_letting_index(self):
         response = self.c.get('/lettings/')
         assert response.status_code == 200
