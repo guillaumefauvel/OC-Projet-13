@@ -1,3 +1,4 @@
+from keyword import kwlist
 from django.test import TestCase
 from django.test import Client
 from django.contrib.auth.models import User
@@ -33,26 +34,27 @@ class UrlTester(TestCase):
         self.c = Client()
 
     def test_index(self):
-        response = self.c.get('/')
+        response = self.c.get(reverse('index'))
         assert response.status_code == 200
         assert "<title>Holiday Homes</title>" in str(response.content)
 
     def test_profile_index(self):
-        response = self.c.get('/profiles/')
+        response = self.c.get(reverse('profiles_index'))
         assert response.status_code == 200
         assert "<title>Profiles</title>" in str(response.content)
 
     def test_profile_object(self):
-        response = self.c.get('/profiles/Josh/')
+        #response = self.c.get('/profiles/Josh/')
+        response = self.c.get(reverse('profile', args=['Josh']))
         assert "<title>Josh</title>" in str(response.content)
         assert response.status_code == 200
 
     def test_letting_index(self):
-        response = self.c.get('/lettings/')
+        response = self.c.get(reverse('lettings_index'))
         assert response.status_code == 200
         assert "<title>Lettings</title>" in str(response.content)
 
     def test_letting_object(self):
-        response = self.c.get('/lettings/1/')
+        response = self.c.get(reverse('letting', args=[1]))
         assert "<title>London Paradise</title>" in str(response.content)
         assert response.status_code == 200

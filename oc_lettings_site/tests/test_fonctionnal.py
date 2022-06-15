@@ -12,7 +12,6 @@ class FunctionnalTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        #os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
         print('\n\n- Start of functionnal tests -\n')
         options = webdriver.ChromeOptions()
         options.headless = True
@@ -23,6 +22,7 @@ class FunctionnalTests(unittest.TestCase):
     def main_page(self):
         self.driver.get(reverse('index'))
         
+        # self.driver.get('http://127.0.0.1:8000/')
         
     def test_profile_object(self):
         self.main_page()

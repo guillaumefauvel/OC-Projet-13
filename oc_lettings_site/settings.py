@@ -26,9 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
+    'django_extensions', # TODO - To delete
     'profiles',
-    'lettings'
+    'lettings',
 ]
 
 MIDDLEWARE = [
@@ -111,4 +111,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-DJANGO_SETTINGS_MODULE= 'oc_lettings_site.settings'
+#DJANGO_SETTINGS_MODULE= 'oc_lettings_site.settings'
