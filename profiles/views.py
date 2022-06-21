@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from profiles.models import Profile
 
+
 # Sed placerat quam in pulvinar commodo.
 def index(request):
     profiles_list = Profile.objects.all()

@@ -11,6 +11,3 @@ urlpatterns = [
     path('', include(lettings_urls)),
     path('', include(profiles_urls))
 ]
-
-
-

@@ -1,11 +1,8 @@
-import os
-
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import unittest
-from django.urls import reverse, reverse_lazy
-
+from django.urls import reverse
 
 
 class FunctionnalTests(unittest.TestCase):
@@ -21,16 +18,14 @@ class FunctionnalTests(unittest.TestCase):
 
     def main_page(self):
         self.driver.get(reverse('index'))
-        
-        # self.driver.get('http://127.0.0.1:8000/')
-        
+
     def test_profile_object(self):
         self.main_page()
         self.driver.find_element(by=By.PARTIAL_LINK_TEXT, value="Profiles").click()
         assert self.driver.current_url == 'http://127.0.0.1:8000/profiles/'
         self.driver.find_element(by=By.PARTIAL_LINK_TEXT, value="HeadlinesGazer").click()
         assert self.driver.current_url == 'http://127.0.0.1:8000/profiles/HeadlinesGazer/'
-        
+
     def test_lettings_object(self):
         self.main_page()
         self.driver.find_element(by=By.PARTIAL_LINK_TEXT, value="Lettings").click()
