@@ -17,7 +17,7 @@ class FunctionnalTests(unittest.TestCase):
         cls.driver.maximize_window()
 
     def main_page(self):
-        self.driver.get(reverse('index'))
+        self.driver.get(reverse('oc_lettings_site:index'))
 
     def test_profile_object(self):
         self.main_page()

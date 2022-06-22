@@ -35,6 +35,7 @@ class UrlTester(TestCase):
 
     def test_index(self):
         response = self.c.get(reverse('index'))
+        print(reverse('index'))
         assert response.status_code == 200
         assert "<title>Holiday Homes</title>" in str(response.content)
 

@@ -4,7 +4,7 @@ from oc_lettings_site.models import Address
 from lettings.models import Letting
 
 
-class LettingsTestCase(TestCase):
+class test_LettingsTestCase(TestCase):
 
     def setUp(self):
         self.address = Address.objects.create(number=1, street="Saint Georges Avenue",
