@@ -1,21 +1,11 @@
 from django.test import TestCase
 from django.urls import reverse
-from oc_lettings_site import settings
-
-from oc_lettings_site.models import Address
-from lettings.models import Letting
-
-###
-
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from django.urls import reverse
 
-from profiles.views import profile
-
-
-###
+from oc_lettings_site.models import Address
+from lettings.models import Letting
 
 
 class test_lettings(TestCase):
@@ -37,12 +27,20 @@ class test_functionnal(TestCase):
     
     @classmethod
     def setUpClass(cls):
-        print('\n\n- Start of functionnal tests -\n')
+        print('-'*70)
+        print('\n- Start of functionnal tests -\n')
         options = webdriver.ChromeOptions()
         options.headless = True
-        cls.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        #  cls.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        #  ChromeDriver V-102.0.5005.61
+        cls.driver = webdriver.Chrome('dependencies/chromedriver.exe', options=options)
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.close()
+        cls.driver.quit()
 
     def main_page(self):
         self.BASE_URL = 'http://localhost:8000'
@@ -90,9 +88,4 @@ class test_functionnal(TestCase):
         self.driver.find_element(by=By.PARTIAL_LINK_TEXT, value='Lettings').click()
         assert self.driver.current_url == self.BASE_URL + reverse('lettings_index')
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.driver.close()
-        cls.driver.quit()
-        print('\n\n\n- End of functionnal tests -\n')
 
