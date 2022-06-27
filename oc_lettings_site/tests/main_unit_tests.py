@@ -71,7 +71,6 @@ class UrlTester(TestCase):
     def test_letting_object(self):
         response = self.c.get(reverse('letting', args=[1]))
         resolved_url = resolve(reverse('letting', args=[1]))
-
         assert resolved_url.func == lettings.views.letting        
         assert "<title>London Paradise</title>" in str(response.content)
         assert response.status_code == 200
