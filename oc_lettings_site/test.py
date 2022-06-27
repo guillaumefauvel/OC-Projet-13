@@ -1,3 +1,4 @@
+import platform
 
 from django.urls import reverse
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
@@ -21,8 +22,10 @@ class functionnal_tests(StaticLiveServerTestCase):
         print('\n- Start of functionnal tests -\n')
         options = webdriver.ChromeOptions()
         options.headless = True
-        #  ChromeDriver V-102.0.5005.61
-        cls.driver = webdriver.Chrome('dependencies/chromedriver.exe', options=options)
+        if platform.system() == 'Windows':
+            cls.driver = webdriver.Chrome('dependencies/win_chromedriver.exe', options=options)
+        if platform.system() == 'Linux':
+            cls.driver = webdriver.Chrome('dependencies/linux_chromedriver', options=options)
         cls.driver.implicitly_wait(10)
         
     @classmethod
