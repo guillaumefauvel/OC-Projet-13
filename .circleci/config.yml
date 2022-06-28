@@ -37,5 +37,9 @@ jobs:
       - run:
           name : Coverage 
           command: |
-            pytest --cov=myproj tests/
+            coverage run -m pytest
+            coverage report
+            coverage html
+      - store_artifacts:
+          path: htmlcov
             
