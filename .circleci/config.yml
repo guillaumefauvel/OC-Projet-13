@@ -33,3 +33,9 @@ jobs:
           destination: python_app
       - store_test_results:
           path: test-results
+      
+      - run:
+          name : Coverage 
+          command: |
+            pytest --cov=myproj tests/
+            
