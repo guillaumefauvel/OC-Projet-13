@@ -1,4 +1,5 @@
 import platform
+import os
 
 from django.urls import reverse
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
@@ -25,6 +26,8 @@ class functionnal_tests(StaticLiveServerTestCase):
         if platform.system() == 'Windows':
             cls.driver = webdriver.Chrome('dependencies/win_chromedriver.exe', options=options)
         if platform.system() == 'Linux':
+            permission_id = '0755'
+            os.chmod('dependencies/linux_chromedriver', int(permission_id, base=8))
             cls.driver = webdriver.Chrome('dependencies/linux_chromedriver', options=options)
         cls.driver.implicitly_wait(10)
         
