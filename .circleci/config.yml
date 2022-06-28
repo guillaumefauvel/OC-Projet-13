@@ -37,7 +37,7 @@ jobs:
       - run:
           name : Coverage 
           command: |
-            python -m pip install coverage pytest
+            python -m pip install -r requirements.txt
             coverage run -m pytest
             coverage report
             coverage html
