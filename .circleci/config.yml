@@ -69,7 +69,7 @@ workflows:
       - build
       - test:
         requires:
-        - build
+          - build
       - coverage
         requires:
-        - test
+          - test
