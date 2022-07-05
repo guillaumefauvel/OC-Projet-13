@@ -36,6 +36,7 @@ jobs:
           name: Running tests
           command: |
             . venv/bin/activate
+            sudo apt-get install -y chromium-browser
             mkdir test-results
             pytest --junitxml=test-results/junit.xml
             python manage.py test
