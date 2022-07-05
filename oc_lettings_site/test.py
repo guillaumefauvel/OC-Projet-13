@@ -14,8 +14,6 @@ from profiles.models import Profile
 
 class functionnal_tests(StaticLiveServerTestCase):
 
-    # TODO : Régler "ConnectionResetError: [WinError 10054] Une connexion existante a dû être fermée par l’hôte distant"
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,12 +21,16 @@ class functionnal_tests(StaticLiveServerTestCase):
         print('\n- Start of functionnal tests -\n')
         options = webdriver.ChromeOptions()
         options.headless = True
+        options.add_argument("--no-sandbox")
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument('--headless')
         if platform.system() == 'Windows':
-            cls.driver = webdriver.Chrome('dependencies/win_chromedriver.exe', options=options)
+            cls.driver = webdriver.Chrome('dependencies/win_chromedriver.exe', chrome_options=options)
         if platform.system() == 'Linux':
             permission_id = '0755'
             os.chmod('dependencies/linux_chromedriver', int(permission_id, base=8))
-            cls.driver = webdriver.Chrome('dependencies/linux_chromedriver', options=options)
+            cls.driver = webdriver.Chrome('dependencies/linux_chromedriver', chrome_options=options)
         cls.driver.implicitly_wait(10)
         
     @classmethod
