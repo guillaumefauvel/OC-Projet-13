@@ -1,4 +1,12 @@
 version: 2
+
+# executors:
+#   docker-publisher:
+#     environment:
+#       IMAGE_TAG: dockervoyager/oc-lettings:latest
+#     docker:
+#       - image: docker:stable
+
 jobs:
   build:
     docker:
@@ -27,12 +35,9 @@ jobs:
       - image: circleci/python:3.10
     steps:
       - checkout
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: Running tests
           command: |
-            . venv/bin/activate
             sudo apt-get update
             sudo apt-get install chromium -y
             mkdir test-results
@@ -49,8 +54,6 @@ jobs:
       - image: circleci/python:3.10
     steps:
       - checkout
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name : Coverage 
           command: |
@@ -60,7 +63,9 @@ jobs:
             coverage html
       - store_artifacts:
           path: htmlcov
-            
+    
+  push:
+
 
 workflows:
   version: 2
