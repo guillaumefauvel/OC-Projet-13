@@ -90,7 +90,7 @@ jobs:
     
   push:
     environment:
-    IMAGE_TAG: dockervoyager/oc-lettings:latest
+      IMAGE_TAG: dockervoyager/oc-lettings:latest
     steps:
       - setup_remote_docker
       - attach_workspace:
