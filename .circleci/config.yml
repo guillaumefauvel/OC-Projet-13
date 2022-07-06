@@ -34,18 +34,18 @@ jobs:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: Test Preparation
-          command: |
-            . venv/bin/activate
-            sudo apt-get update
-            sudo apt-get install chromium -y
-            sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo dpkg -i google-chrome-stable_current_amd64.deb
-            sudo apt-get -fy install
-            mkdir test-results
+            command: |
+              . venv/bin/activate
+              sudo apt-get update
+              sudo apt-get install chromium -y
+              sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+              sudo dpkg -i google-chrome-stable_current_amd64.deb
+              sudo apt-get -fy install
+              mkdir test-results
           name: Test Launch
-          command: |
-            pytest --junitxml=test-results/junit.xml
-            python manage.py test
+            command: |
+              pytest --junitxml=test-results/junit.xml
+              python manage.py test
 
       - store_artifacts:
           path: test-reports/
