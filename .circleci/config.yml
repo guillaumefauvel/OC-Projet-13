@@ -12,11 +12,6 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            sudo apt-get update
-            sudo apt-get install -y gconf-service libasound2 libatk1.0-0 libpango-1.0-0 
-            sudo apt-get install -y libcairo2 libcups2 libfontconfig1
-            sudo apt-get install -y libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4
-            sudo apt-get install -y libxss1 fonts-liberation libnss3 lsb-release xdg-utils
             sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
             sudo dpkg -i google-chrome-stable_current_amd64.deb
             sudo apt-get -fy install
