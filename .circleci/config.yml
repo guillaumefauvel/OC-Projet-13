@@ -1,11 +1,12 @@
 version: 2
 
 # executors:
-#   docker-publisher:
-#     environment:
-#       IMAGE_TAG: dockervoyager/oc-lettings:latest
-#     docker:
-#       - image: docker:stable
+  # docker:
+  #   environment:
+  #     IMAGE_TAG: dockervoyager/oc-lettings:latest
+  #   docker:
+  #     - image: docker:stable
+
 
 jobs:
   build:
@@ -87,6 +88,8 @@ jobs:
           path: htmlcov
     
   push:
+    docker:
+      - image: circleci/python:3.10
     environment:
       IMAGE_TAG: dockervoyager/oc-lettings:latest
     steps:
