@@ -46,6 +46,8 @@ jobs:
       - run:
           name: Test Launch
           command: |
+            . venv/bin/activate
+            pip install -r requirements.txt
             pytest --junitxml=test-results/junit.xml
             python manage.py test
 
