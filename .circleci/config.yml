@@ -22,8 +22,6 @@ jobs:
           name: Environment Creation
           command: |
             python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
       - run:
           name: Build Docker image
           command: docker build --tag "${IMAGE_TAG}" .
@@ -92,6 +90,7 @@ jobs:
     environment:
       IMAGE_TAG: dockervoyager/oc-lettings:latest
     steps:
+      - checkout
       - setup_remote_docker
       - attach_workspace:
           at: /tmp/workspace
