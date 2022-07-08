@@ -10,8 +10,8 @@ version: 2
 
 jobs:
   build:
-    environment:
-      IMAGE_TAG: dockervoyager/oc-lettings:latest
+    # environment:
+    #   IMAGE_TAG: dockervoyager/oc-lettings:latest
     docker:
       - image: circleci/python:3.10
     steps:
@@ -27,7 +27,7 @@ jobs:
           command: docker build --tag "${CIRCLE_SHA1}" .
       - run:
           name: Archive Docker image
-          command: docker save --output image.tar "${IMAGE_TAG}"
+          command: docker save --output image.tar "${CIRCLE_SHA1}"
       - persist_to_workspace:
           root: .
           paths:
@@ -87,8 +87,8 @@ jobs:
   push:
     docker:
       - image: circleci/python:3.10
-    environment:
-      IMAGE_TAG: dockervoyager/oc-lettings:latest
+    # environment:
+    #   IMAGE_TAG: dockervoyager/oc-lettings:latest
     steps:
       - checkout
       - setup_remote_docker
@@ -101,7 +101,7 @@ jobs:
           name: Publish Docker image
           command: |
             echo "${DOCKERHUB_PASSWORD}" | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
-            docker push "${IMAGE_TAG}"
+            docker push "${CIRCLE_SHA1}"
 
 workflows:
   version: 2
