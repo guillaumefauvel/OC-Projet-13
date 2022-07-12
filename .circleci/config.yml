@@ -113,11 +113,11 @@ workflows:
               only:
                 - main
   heroku_deploy:
-     jobs:
-        - build
-        - test
-        - coverage
-       - heroku/deploy-via-git:
+    jobs:
+      - build
+      - test
+      - coverage
+      - heroku/deploy-via-git:
           requires:
             - build
           filters:
