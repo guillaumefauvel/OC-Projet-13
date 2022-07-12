@@ -99,27 +99,23 @@ workflows:
   build_test_and_coverage:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - coverage:
-          requires:
-            - test
+      - test
+      - coverage
       - push:
           requires:
+            - build
+            - test
             - coverage
           filters:
             branches:
               only:
                 - main
-  heroku_deploy:
-    jobs:
-      - build
-      - test
-      - coverage
       - heroku/deploy-via-git:
           requires:
             - build
+            - test
+            - coverage
+            - push
           filters:
             branches:
               only: main
