@@ -96,7 +96,7 @@ jobs:
 
   deploy:
     docker:
-      - image: oc-lettings
+      - image: dockervoyager/oc-lettings:latest
         auth:
           username: dockervoyager
           password: $DOCKERHUB_PASSWORD 
