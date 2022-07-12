@@ -1,7 +1,7 @@
 version: 2.1
 
-orbs:
-   heroku: circleci/heroku@0.0.10
+# orbs:
+#    heroku: circleci/heroku@0.0.10
 
 jobs:
   build:
@@ -94,6 +94,19 @@ jobs:
             echo "${DOCKERHUB_PASSWORD}" | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
             docker push dockervoyager/oc-lettings:$CIRCLE_SHA1
 
+   deploy:
+     docker:
+       - image: oc-lettings
+         auth:
+           username: dockervoyager
+           password: $DOCKERHUB_PASSWORD 
+     steps:
+       - checkout
+       - run:
+           name: Deploy Main to Heroku
+           command: |
+             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
+
 workflows:
   version: 2.1
   build_test_and_coverage:
@@ -110,7 +123,7 @@ workflows:
             branches:
               only:
                 - main
-      - heroku/deploy-via-git:
+      - deploy:
           requires:
             - build
             - test
@@ -118,4 +131,14 @@ workflows:
             - push
           filters:
             branches:
-              only: main
+              only:
+                - main
+      # - heroku/deploy-via-git:
+      #     requires:
+      #       - build
+      #       - test
+      #       - coverage
+      #       - push
+      #     filters:
+      #       branches:
+      #         only: main
