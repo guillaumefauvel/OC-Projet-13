@@ -114,13 +114,12 @@ workflows:
                 - main
   heroku_deploy:
      jobs:
-       - build
+        - build
+        - test
+        - coverage
        - heroku/deploy-via-git:
-           requires:
-             - build
-             - test
-             - coverage
-             - push
-           filters:
-             branches:
-               only: main
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
