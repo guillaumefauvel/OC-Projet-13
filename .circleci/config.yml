@@ -1,12 +1,7 @@
-version: 2
+version: 2.1
 
-# executors:
-  # docker:
-  #   environment:
-  #     IMAGE_TAG: dockervoyager/oc-lettings:latest
-  #   docker:
-  #     - image: docker:stable
-
+orbs:
+   heroku: circleci/heroku@x.y
 
 jobs:
   build:
@@ -85,8 +80,6 @@ jobs:
   push:
     docker:
       - image: circleci/python:3.10
-    # environment:
-    #   IMAGE_TAG: dockervoyager/oc-lettings:${CIRCLE_SHA1}
     steps:
       - checkout
       - setup_remote_docker
@@ -102,7 +95,7 @@ jobs:
             docker push dockervoyager/oc-lettings:$CIRCLE_SHA1
 
 workflows:
-  version: 2
+  version: 2.1
   build_test_and_coverage:
     jobs:
       - build
@@ -119,3 +112,15 @@ workflows:
             branches:
               only:
                 - main
+  heroku_deploy:
+     jobs:
+       - build
+       - heroku/deploy-via-git:
+           requires:
+             - build
+             - test
+             - coverage
+             - push
+           filters:
+             branches:
+               only: main
