@@ -131,7 +131,7 @@ STATICFILES_DIRS = (
 # Sentry Configuration
 
 sentry_sdk.init(
-    dsn="https://a8b059610d5a46e4b3d810c901174437@o1322111.ingest.sentry.io/6579212",
+    dsn=os.getenv('DSN_LINK', default=None),
     integrations=[
         DjangoIntegration(
             transaction_style='url',
@@ -139,5 +139,6 @@ sentry_sdk.init(
     traces_sample_rate=1.0,
     send_default_pii=True,
     environment="debugging",
-    release=os.environ.get('CIRCLE_SHA1'),
+    release=os.getenv('CIRCLE_SHA1', default=None),
 )
+
