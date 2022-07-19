@@ -13,7 +13,7 @@ Site web d'Orange County Lettings
 
 Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
 
-### macOS / Linux
+### macOS / Linux  
 
 #### Cloner le repository
 
@@ -53,6 +53,21 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - `source venv/bin/activate`
 - `pytest`
 
+#### Tests fonctionnel
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `source venv/bin/activate`
+- `python manage.py test`
+
+#### Couvertute des tests 
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `source venv/bin/activate`
+- `coverage run -m pytest`
+- `coverage report`
+- `coverage html`
+
+
 #### Base de données
 
 - `cd /path/to/Python-OC-Lettings-FR`
@@ -75,3 +90,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+
+## Déploiement
+
