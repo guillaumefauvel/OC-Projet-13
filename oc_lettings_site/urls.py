@@ -5,8 +5,11 @@ from . import views
 from lettings.urls import urlpatterns as lettings_urls
 from profiles.urls import urlpatterns as profiles_urls
 
+
 def trigger_error(request):
     division_by_zero = 1 / 0
+    return division_by_zero
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

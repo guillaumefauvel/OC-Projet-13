@@ -141,4 +141,3 @@ sentry_sdk.init(
     environment="debugging",
     release=os.environ.get('CIRCLE_SHA1'),
 )
-

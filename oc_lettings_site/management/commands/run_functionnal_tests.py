@@ -8,9 +8,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        # TODO - Work in progress
-
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
         os.system('python oc_lettings_site/tests/test_fonctionnal.py')
-
-

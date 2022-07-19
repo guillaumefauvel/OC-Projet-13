@@ -39,7 +39,7 @@ class UrlTester(TestCase):
     def test_index(self):
         response = self.c.get(reverse('index'))
         resolved_url = resolve(reverse('index'))
-        
+
         assert resolved_url.func == index
         assert response.status_code == 200
         assert "<title>Holiday Homes</title>" in str(response.content)
@@ -47,7 +47,7 @@ class UrlTester(TestCase):
     def test_profile_index(self):
         response = self.c.get(reverse('profiles_index'))
         resolved_url = resolve(reverse('profiles_index'))
-        
+
         assert resolved_url.func == profiles.views.index
         assert response.status_code == 200
         assert "<title>Profiles</title>" in str(response.content)
@@ -55,7 +55,7 @@ class UrlTester(TestCase):
     def test_profile_object(self):
         response = self.c.get(reverse('profile', args=['Josh']))
         resolved_url = resolve(reverse('profile', args=['Josh']))
-        
+
         assert resolved_url.func == profiles.views.profile
         assert "<title>Josh</title>" in str(response.content)
         assert response.status_code == 200
@@ -63,14 +63,14 @@ class UrlTester(TestCase):
     def test_letting_index(self):
         response = self.c.get(reverse('lettings_index'))
         resolved_url = resolve(reverse('lettings_index'))
-        
-        assert resolved_url.func == lettings.views.index        
+
+        assert resolved_url.func == lettings.views.index
         assert response.status_code == 200
         assert "<title>Lettings</title>" in str(response.content)
 
     def test_letting_object(self):
         response = self.c.get(reverse('letting', args=[1]))
         resolved_url = resolve(reverse('letting', args=[1]))
-        assert resolved_url.func == lettings.views.letting        
+        assert resolved_url.func == lettings.views.letting
         assert "<title>London Paradise</title>" in str(response.content)
         assert response.status_code == 200
