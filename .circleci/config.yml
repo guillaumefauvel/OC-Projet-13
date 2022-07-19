@@ -127,6 +127,7 @@ workflows:
       - build
       - test
       - coverage
+      - linting
       - push:
           requires:
             - build
