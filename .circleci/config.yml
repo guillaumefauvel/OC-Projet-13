@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    environnement:
+    environment:
       DSN_LINK: $DSN_LINK
     docker:
       - image: circleci/python:3.10
