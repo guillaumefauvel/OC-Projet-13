@@ -1,5 +1,6 @@
 import os
 
+from decouple import config
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -131,7 +132,7 @@ STATICFILES_DIRS = (
 # Sentry Configuration
 
 sentry_sdk.init(
-    dsn=os.getenv('SENTRY_DSN'),
+    dsn=config('SENTRY_DSN', default=""),
     integrations=[
         DjangoIntegration(
             transaction_style='url',
@@ -141,4 +142,3 @@ sentry_sdk.init(
     environment="debugging",
     release=os.getenv('CIRCLE_SHA1'),
 )
-print(os.environ)
