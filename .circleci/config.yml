@@ -120,7 +120,6 @@ jobs:
       - run:
           name: Deploy Main to Heroku
           command: |
-            sudo apt install gunicorn
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
 
 workflows:
