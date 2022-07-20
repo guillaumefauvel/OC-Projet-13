@@ -2,7 +2,11 @@
 
 Site web d'Orange County Lettings
 
+<br>
+
 ## Développement local
+
+<br>
 
 ### Prérequis
 
@@ -10,8 +14,11 @@ Site web d'Orange County Lettings
 - Git CLI
 - SQLite3 CLI
 - Interpréteur Python, version 3.6 ou supérieure
+- Docker
 
 Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
+
+<br>
 
 ### macOS / Linux  
 
@@ -53,13 +60,13 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - `source venv/bin/activate`
 - `pytest`
 
-#### Tests fonctionnel
+#### Tests fonctionnels
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
 - `python manage.py test`
 
-#### Couvertute des tests 
+#### Couverture des tests 
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
@@ -84,6 +91,8 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Aller sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
+<br>
+
 ### Windows
 
 Utilisation de PowerShell, comme ci-dessus sauf :
@@ -91,6 +100,19 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
+### Lancer le dernier build en local avec docker
+
+- `docker run -p 8000:8000 dockervoyager/oc-lettings:latest`
+- Rendez-vous à l'adresse `http://localhost:8000`
+
+<br>
 
 ## Déploiement
+
+
+### Configuration de CircleCi
+
+
+
+### Configuration de Sentry
 

@@ -2,6 +2,8 @@ version: 2.1
 
 jobs:
   build:
+    environnement:
+      DSN_LINK: $DSN_LINK
     docker:
       - image: circleci/python:3.10
     steps:
@@ -112,7 +114,7 @@ jobs:
       - image: dockervoyager/oc-lettings:latest
         auth:
           username: dockervoyager
-          password: $DOCKERHUB_PASSWORD 
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run:
