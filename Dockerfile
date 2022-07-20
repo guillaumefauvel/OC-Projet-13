@@ -1,6 +1,6 @@
 FROM python:3
 ENV PYTHONUNBUFFERED 1
-ENV DSN_LINK $DSN_LINK
+ENV SENTRY_DSN $SENTRY_DSN
 RUN mkdir /code
 WORKDIR /code
 COPY requirements.txt /code/
