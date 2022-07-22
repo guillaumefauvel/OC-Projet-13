@@ -94,17 +94,42 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Un compte Heroku
 - Un compte Sentry
 
-Une fois que vous souhaitez déployer l'application pour la première fois vous allez devoir configurer les différentes dépendances externes. 
+Pour déployer l'application vous allez devoir configurer les différentes dépendances externes. 
 
-
-### Initialiser votre repository GitHub
+## Initialiser votre repository GitHub
 
 A partir de la version clonée créez votre propre repository GitHub à partir de votre version. 
 
-### Configuration de CircleCi
+## Configuration de DockerHub
+
+Créez un nouveau repository, la référence de ce dernier équivaudra à valeur de la clez `DOCKERHUB_REPO` (`account`/`repo_name`)
+
+
+## Configuration de Sentry
+
+Une fois connecté à votre compte Sentry, créez un nouveau projet de type Django. Vous serez redirigé vers l'étape de configuration. Cet apport en code étant déjà intégré au sein de ce repo, il vous faudra juste conserver votre propre clé DSN. Vous pouvez retrouvé sa valeur au niveau de la variable `dsn`. Cette valeur sera rattaché à la clé `SENTRY_DSN` plus tard lors de la configuration de CircleCi. 
+
+## Configuration d'Heroku
+
+Créez une nouvelle application. Retenez son nom, il correspondra à l'`HEROKU_APP_NAME`. Rendez vous dans les paramètre de votre compte, générez une clés API si ça n'a pas déjà été fait. Sauvegardez cette dernière, sa valeur correspondra à la clez CircleCi : `HEROKU_API_KEY`.
+
+Une fois ces opérations réalisé vous allez devoir ajouter les paires de clés:valeurs.
+Pour ce faire, vous pouvez les ajouter directement depuis le site Heroku, dans les paramètres du projet.
+Si votre machine possède Heroku et qu'elle est liée à votre compte vous pouvez ajouter ces valeurs avec la commande suivante : `heroku config:set MY_KEY=my_value`
+
+Voici la liste des paires à ajouter :
+
+| Clé | Valeur |
+| ----------- | ----------- | 
+| `DEBUG_STATE` | L'activation du mode debug : `True` ou `False` |
+| `DISABLE_COLLECTSTATIC` | `0` |
+| `SECRET_KEY` | La clez secrète de l'application |
+| `SENTRY_DSN` | Le Data Source Name du projet Sentry |
+
+## Configuration de CircleCi
 
 Liiez votre repository GitHub à votre projet CircleCi en appuyant sur le bouton  **`Set Up Project`**. Utilisez la configuration basé sur le fichier config.yml déjà présent dans le repo.  
-Dans les variables d'environnement du projet, ajoutez : 
+Dans les variables d'environnement du projet CircleCi, ajoutez : 
 
 | Clé | Valeur |
 | ----------- | ----------- | 
@@ -116,16 +141,6 @@ Dans les variables d'environnement du projet, ajoutez :
 | `HEROKU_APP_NAME` | Le nom de l'application Heroku |
 | `HEROKU_API_KEY` | La clez API de l'application Heroku |
 | `IMAGE_NAME` | Le nom de l'image |
-| `SENTRY_DSN` | Le Data Source Name du projet Sentry|
+| `SENTRY_DSN` | Le Data Source Name du projet Sentry |
 
-### Configuration de DockerHub
-
-
-### Configuration d'Heroku
-
-
-
-### Configuration de Sentry
-
-Créer un nouveau projet et garder le DSN de ce dernier.
 
