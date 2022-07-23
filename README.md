@@ -43,7 +43,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 ### Lancement des différents process
 
-*Tous les process doivent être lancer dans le dossier propre au projet et l'environnement virtuel doit être activé.*
+*Tous les process doivent être lancé dans le dossier propre au projet et l'environnement virtuel doit être activé.*
 
 Lancez le linting avec la commande : `flake8` 
 
@@ -63,8 +63,7 @@ Pour vérifier la couverture des tests insérez cette suite de commande :
 - Se connecter à la base de données `.open oc-lettings-site.sqlite3`
 - Afficher les tables dans la base de données `.tables`
 - Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
-- Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
+- Lancer une requête sur la table des profils, `select user_id, favorite_city from Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
 - `.quit` pour quitter
 
 ### Panel d'administration
@@ -79,10 +78,10 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
-### Lancer le dernier build en local avec docker
+### Lancer le dernier build en local avec Docker
 
 - `docker run -p 8000:8000 dockervoyager/oc-lettings:latest`
-- Rendez-vous à l'adresse : `http://localhost:8000`
+- Rendez-vous à l'adresse : `http://localhost:8000` afin de consulter le résultat.
 
 # Déploiement
 
@@ -98,22 +97,28 @@ Pour déployer l'application vous allez devoir configurer les différentes dépe
 
 ## Initialiser votre repository GitHub
 
-A partir de la version clonée créez votre propre repository GitHub à partir de votre version. 
+À partir de la version clonée créez votre propre repository GitHub. 
 
 ## Configuration de DockerHub
+
+*Le DockerHub permet de d'obtenir le versionning d'une image Docker, il est possible de démarer l'application en local directement à partir d'une image présente sur le DockerHub.*
 
 Créez un nouveau repository, la référence de ce dernier équivaudra à valeur de la clez `DOCKERHUB_REPO` (`account`/`repo_name`)
 
 
 ## Configuration de Sentry
 
-Une fois connecté à votre compte Sentry, créez un nouveau projet de type Django. Vous serez redirigé vers l'étape de configuration. Cet apport en code étant déjà intégré au sein de ce repo, il vous faudra juste conserver votre propre clé DSN. Vous pouvez retrouvé sa valeur au niveau de la variable `dsn`. Cette valeur sera rattaché à la clé `SENTRY_DSN` plus tard lors de la configuration de CircleCi. 
+*Offre le suivie et l'aide à la résolution d'erreur lorsque l'application est en pré-production/production*
+
+Une fois connecté à votre compte Sentry, créez un nouveau projet de type Django. Vous serez redirigé vers l'étape de configuration. Cet apport en code étant déjà intégré au sein de ce repo, il vous faudra juste conserver votre propre clé DSN. Vous pouvez retrouver sa valeur au niveau de la variable `dsn`. Cette valeur sera rattachée à la clé `SENTRY_DSN` plus tard lors de la configuration de CircleCi. 
 
 ## Configuration d'Heroku
 
+*Permet de facilement déployer des applications peu complexe*
+
 Créez une nouvelle application. Retenez son nom, il correspondra à l'`HEROKU_APP_NAME`. Rendez vous dans les paramètre de votre compte, générez une clés API si ça n'a pas déjà été fait. Sauvegardez cette dernière, sa valeur correspondra à la clez CircleCi : `HEROKU_API_KEY`.
 
-Une fois ces opérations réalisé vous allez devoir ajouter les paires de clés:valeurs.
+Une fois ces opérations réalisé vous allez devoir ajouter les paires de *clés:valeurs*.
 Pour ce faire, vous pouvez les ajouter directement depuis le site Heroku, dans les paramètres du projet.
 Si votre machine possède Heroku et qu'elle est liée à votre compte vous pouvez ajouter ces valeurs avec la commande suivante : `heroku config:set MY_KEY=my_value`
 
@@ -128,7 +133,9 @@ Voici la liste des paires à ajouter :
 
 ## Configuration de CircleCi
 
-Liiez votre repository GitHub à votre projet CircleCi en appuyant sur le bouton  **`Set Up Project`**. Utilisez la configuration basé sur le fichier config.yml déjà présent dans le repo.  
+*Application permettant d'orchestrer le processus CI/CD. Le fichier `.circle/config.yml` fait office de d'infrastructure.*
+
+Liiez votre repository GitHub à votre projet CircleCi en appuyant sur le bouton  **`Set Up Project`**. Utilisez la configuration basé sur le fichier config.yml, il est déjà présent dans le repo.  
 Dans les variables d'environnement du projet CircleCi, ajoutez : 
 
 | Clé | Valeur |
