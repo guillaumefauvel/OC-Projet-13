@@ -133,10 +133,11 @@ Voici la liste des paires à ajouter :
 
 ## Configuration de CircleCi
 
-*Application permettant d'orchestrer le processus CI/CD. Le fichier `.circle/config.yml` fait office de d'infrastructure.*
+*Application permettant d'orchestrer le processus CI/CD. Le fichier `.circle/config.yml` fait office d'infrastructure.*
 
 Liiez votre repository GitHub à votre projet CircleCi en appuyant sur le bouton  **`Set Up Project`**. Utilisez la configuration basé sur le fichier config.yml, il est déjà présent dans le repo.  
 Dans les variables d'environnement du projet CircleCi, ajoutez : 
+
 
 | Clé | Valeur |
 | ----------- | ----------- | 
