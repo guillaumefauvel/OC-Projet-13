@@ -4,3 +4,4 @@ env
 flake-report
 htmlcov
 staticfiles
+.env

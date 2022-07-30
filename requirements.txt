@@ -32,6 +32,8 @@ pyparsing==3.0.9
 PySocks==1.7.1
 pytest==7.1.2
 pytest-django==3.9.0
+python-decouple==3.6
+python-dotenv==0.20.0
 pytz==2022.1
 requests==2.28.0
 selenium==4.2.0
@@ -47,4 +49,3 @@ urllib3==1.26.9
 webdriver-manager==3.7.0
 whitenoise==6.2.0
 wsproto==1.1.0
-gunicorn==19.0.0
