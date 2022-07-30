@@ -80,7 +80,8 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ### Lancer le dernier build en local avec Docker
 
-- `docker run -p 8000:8000 dockervoyager/oc-lettings:latest`
+- Indiquer dans un fichier `.env` le `SECRET_KEY=VOTRE_SECRET_KEY_DJANGO`, le `DEBUG_STATE=True_OU_FALSE` et le `SENTRY_DSN=VOTRE_DSN`
+- `docker run -d --env-file .env -p 8000:8000 VOTRE_DOCKER_USERNAME/NOM_DE_L'APPLICATION:` terminer par le `SHA` du dernier commit.
 - Rendez-vous à l'adresse : `http://localhost:8000` afin de consulter le résultat.
 
 # Déploiement
