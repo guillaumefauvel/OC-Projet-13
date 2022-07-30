@@ -17,7 +17,7 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 DEBUG = config("DEBUG_STATE", 'False').lower() in ('true', '1', 't')
 
 ALLOWED_HOSTS = ['orange-county-lettings-web.herokuapp.com',
-                 '127.0.0.1']
+                 '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
