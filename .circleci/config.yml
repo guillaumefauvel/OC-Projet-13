@@ -112,9 +112,6 @@ jobs:
   deploy:
     docker:
       - image: $DOCKERHUB_REPO:$CIRCLE_SHA1
-        auth:
-          username: dockervoyager
-          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run:
