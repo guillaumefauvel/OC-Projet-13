@@ -121,7 +121,7 @@ jobs:
 
 workflows:
   version: 2.1
-  build_test_and_coverage:
+  oc_lettings_pipeline:
     jobs:
       - build
       - test
